@@ -11,34 +11,36 @@ import '../../product/views/product_view.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
-  const HomeView({Key? key}) : super(key: key);
+  HomeView({Key? key}) : super(key: key);
+
+  final List<Widget> screen = [
+    const ProductView(),
+    const StorageView(),
+    const CartView(),
+    const CustomerView(),
+    const StatisticalView(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Obx(() => IndexedStack(
-            index: controller.currentBottomNavItemIndex.value,
-            children: const [
-              PageTransition(child: ProductView()),
-              PageTransition(child: StorageView()),
-              PageTransition(child: CartView()),
-              PageTransition(child: CustomerView()),
-              PageTransition(child: StatisticalView()),
-            ],
+      body: Obx(() => PageTransition(
+            child: screen[controller.currentBottomNavItemIndex.value],
           )),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: controller.currentBottomNavItemIndex.value,
-        onTap: controller.switchBetweenBottomNavigationItems,
-        selectedFontSize: 0,
-        items: controller.bottomNavigationItems.map(
-          (element) {
-            return BottomNavigationBarItem(
-              icon: element.disableIcon,
-              label: element.label,
-              activeIcon: element.enableIcon,
-            );
-          },
-        ).toList(),
-      ),
+      bottomNavigationBar: Obx(() => BottomNavigationBar(
+            currentIndex: controller.currentBottomNavItemIndex.value,
+            onTap: controller.switchBetweenBottomNavigationItems,
+            selectedFontSize: 0,
+            items: controller.bottomNavigationItems.map(
+              (element) {
+                return BottomNavigationBarItem(
+                  icon: element.disableIcon,
+                  label: element.label,
+                  activeIcon: element.enableIcon,
+                );
+              },
+            ).toList(),
+          )),
     );
   }
 }

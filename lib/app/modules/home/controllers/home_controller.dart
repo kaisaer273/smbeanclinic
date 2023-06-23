@@ -35,21 +35,6 @@ class HomeController extends GetxController {
     )
   ];
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
   void switchBetweenBottomNavigationItems(int currentIndex) {
     currentBottomNavItemIndex.value = currentIndex;
   }
