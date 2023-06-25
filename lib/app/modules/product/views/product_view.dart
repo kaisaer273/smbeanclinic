@@ -1,22 +1,96 @@
-import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
+import 'package:flutter/material.dart' hide Badge;
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:smbeanclinic/app/core/theme/app_color.dart';
+import 'package:smbeanclinic/app/core/theme/theme_services.dart';
+import 'package:smbeanclinic/app/modules/cart/controllers/cart_controller.dart';
 
+import '../../../global_widget/empty_widget.dart';
+import '../../../global_widget/product_list_view.dart';
 import '../controllers/product_controller.dart';
 
+// final ProductController controller = Get.put(ProductController());
+
 class ProductView extends GetView<ProductController> {
-  const ProductView({Key? key}) : super(key: key);
+  ProductView({Key? key}) : super(key: key);
+  final CartController cartController = Get.put(CartController());
+  PreferredSizeWidget _appBar(BuildContext context) {
+    return AppBar(
+      leading: IconButton(
+        icon: const FaIcon(FontAwesomeIcons.dice),
+        onPressed: () => ThemeServices().switchTheme(),
+      ),
+      title: Text(
+        "Danh sách sản phẩm",
+        style: Theme.of(context).textTheme.displaySmall,
+      ),
+      actions: [
+        IconButton(
+          onPressed: () {},
+          icon: const Icon(
+            Icons.qr_code_scanner_outlined,
+            size: 30,
+          ),
+        ),
+        const SizedBox(
+          width: 10,
+        )
+      ],
+    );
+  }
+
+  Widget _searchBar() {
+    return Padding(
+      padding: const EdgeInsets.only(
+        bottom: 10,
+      ),
+      child: TextField(
+        onChanged: (value) => controller.filterproduct(value),
+        decoration: const InputDecoration(
+          hintText: 'Search',
+          prefixIcon: Icon(Icons.search, color: Colors.grey),
+          contentPadding: EdgeInsets.all(20),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('ProductView'),
-        centerTitle: true,
-      ),
-      body: const Center(
-        child: Text(
-          'ProductView is working',
-          style: TextStyle(fontSize: 20),
+      appBar: _appBar(context),
+      body: Padding(
+        padding: const EdgeInsets.only(
+          left: 20,
+          right: 20,
+          bottom: 10,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _searchBar(),
+            const Divider(
+              thickness: 2,
+              color: LightThemeColor.accent,
+              height: 10,
+            ),
+            Obx(
+              () => Expanded(
+                child: EmptyWidget(
+                  title: "Không có sản phẩm",
+                  condition: controller.filteredProducts.isNotEmpty,
+                  child: GetBuilder(
+                    builder: (ProductController controller) {
+                      return ProductListView(
+                        cartController: cartController,
+                        products: controller.filteredProducts,
+                      );
+                    },
+                  ),
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );

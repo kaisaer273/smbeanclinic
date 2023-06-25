@@ -29,7 +29,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.PRODUCT,
-      page: () => const ProductView(),
+      page: () => ProductView(),
       binding: ProductBinding(),
       transition: Transition.fadeIn,
       transitionDuration: const Duration(microseconds: 1000),

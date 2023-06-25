@@ -1,8 +1,5 @@
-import 'package:flutter/material.dart';
-import '../data/models/bottom_navigation_item.dart';
 import '../data/models/product.dart';
 import '../data/models/product_category.dart';
-import 'app_icon.dart';
 
 class AppData {
   const AppData._();
@@ -279,30 +276,6 @@ class AppData {
       numInStorage: 70,
       numSold: 100,
     ),
-  ];
-
-  static List<BottomNavigationItem> bottomNavigationItems = [
-    BottomNavigationItem(
-      const Icon(Icons.home_outlined),
-      const Icon(Icons.home),
-      'Home',
-      isSelected: true,
-    ),
-    BottomNavigationItem(
-      const Icon(Icons.shopping_cart_outlined),
-      const Icon(Icons.shopping_cart),
-      'Shopping cart',
-    ),
-    BottomNavigationItem(
-      const Icon(AppIcon.outlinedHeart),
-      const Icon(AppIcon.heart),
-      'Favorite',
-    ),
-    BottomNavigationItem(
-      const Icon(Icons.person_outline),
-      const Icon(Icons.person),
-      'Profile',
-    )
   ];
 
   static List<ProductCategory> categories = [

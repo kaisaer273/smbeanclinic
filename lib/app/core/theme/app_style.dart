@@ -19,13 +19,13 @@ const h3Style = TextStyle(
 );
 
 const h4StyleLight = TextStyle(
-  fontSize: 15,
+  fontSize: 17,
   fontWeight: FontWeight.w500,
   color: Colors.black,
 );
 
 const h5StyleLight = TextStyle(
-  fontSize: 17,
+  fontSize: 15,
   fontWeight: FontWeight.w400,
   color: Colors.black87,
 );

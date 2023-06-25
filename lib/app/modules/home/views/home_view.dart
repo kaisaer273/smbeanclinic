@@ -14,7 +14,7 @@ class HomeView extends GetView<HomeController> {
   HomeView({Key? key}) : super(key: key);
 
   final List<Widget> screen = [
-    const ProductView(),
+    ProductView(),
     const StorageView(),
     const CartView(),
     const CustomerView(),
