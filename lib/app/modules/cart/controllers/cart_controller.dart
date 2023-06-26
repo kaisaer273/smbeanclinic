@@ -1,32 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../data/models/order.dart';
+import '../../../data/models/product_order.dart';
 import '../../../data/models/product.dart';
 
 class CartController extends GetxController
     with GetSingleTickerProviderStateMixin {
   final RxMap<dynamic, dynamic> _cartProduct = <dynamic, dynamic>{}.obs;
-  final RxList<Order> _listOrdered = <Order>[].obs;
+  final RxList<ProductOrder> _listOrdered = <ProductOrder>[].obs;
   late TabController tabController;
-  final List<Tab> tabs = <Tab>[
-    Tab(
-      child: Text(
-        "Đơn mới",
-        style: Get.theme.textTheme.displaySmall,
+
+  List<Tab> tabs(BuildContext context) {
+    return <Tab>[
+      Tab(
+        child: Text(
+          "Đơn mới",
+          style: Theme.of(context).textTheme.displayMedium,
+        ),
       ),
-    ),
-    Tab(
-      child: Text(
-        "Lịch sử",
-        style: Get.theme.textTheme.displaySmall,
-      ),
-    )
-  ];
+      Tab(
+        child: Text(
+          "Lịch sử",
+          style: Theme.of(context).textTheme.displayMedium,
+        ),
+      )
+    ];
+  }
 
   @override
   void onInit() {
-    tabController = TabController(length: tabs.length, vsync: this);
+    tabController = TabController(length: 2, vsync: this);
     super.onInit();
   }
 

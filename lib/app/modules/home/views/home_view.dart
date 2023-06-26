@@ -23,11 +23,11 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Obx(() => PageTransition(
+    return Obx(() => Scaffold(
+          body: PageTransition(
             child: screen[controller.currentBottomNavItemIndex.value],
-          )),
-      bottomNavigationBar: Obx(() => BottomNavigationBar(
+          ),
+          bottomNavigationBar: BottomNavigationBar(
             currentIndex: controller.currentBottomNavItemIndex.value,
             onTap: controller.switchBetweenBottomNavigationItems,
             selectedFontSize: 0,
@@ -40,7 +40,7 @@ class HomeView extends GetView<HomeController> {
                 );
               },
             ).toList(),
-          )),
-    );
+          ),
+        ));
   }
 }

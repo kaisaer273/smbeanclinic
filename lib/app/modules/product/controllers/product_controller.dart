@@ -8,6 +8,11 @@ import '../../../data/models/product_category.dart';
 class ProductController extends GetxController {
   RxList<ProductCategory> categories = AppData.categories.obs;
   RxList<Product> filteredProducts = AppData.productItems.obs;
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+  }
 
   void filterproduct(String query) {
     filteredProducts.value = AppData.productItems.where((item) {

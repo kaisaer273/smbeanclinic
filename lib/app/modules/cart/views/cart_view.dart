@@ -18,7 +18,7 @@ class CartView extends GetView<CartController> {
           style: Theme.of(context).textTheme.displayMedium,
         ),
         bottom: TabBar(
-          tabs: controller.tabs,
+          tabs: controller.tabs(context),
           controller: controller.tabController,
         ),
       ),
