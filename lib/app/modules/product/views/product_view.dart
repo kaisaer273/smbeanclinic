@@ -45,11 +45,18 @@ class ProductView extends GetView<ProductController> {
         bottom: 10,
       ),
       child: TextField(
-        onChanged: (value) => controller.filterproduct(value),
-        decoration: const InputDecoration(
+        controller: controller.textEditingController,
+        onChanged: (value) => controller.searchQuery.value = value,
+        decoration: InputDecoration(
           hintText: 'Search',
-          prefixIcon: Icon(Icons.search, color: Colors.grey),
-          contentPadding: EdgeInsets.all(20),
+          prefixIcon: const Icon(Icons.search, color: Colors.grey),
+          contentPadding: const EdgeInsets.all(20),
+          suffixIcon: IconButton(
+              onPressed: () {
+                controller.searchQuery.value = '';
+                controller.textEditingController.text = '';
+              },
+              icon: const Icon(Icons.close)),
         ),
       ),
     );

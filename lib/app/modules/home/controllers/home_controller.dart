@@ -15,7 +15,7 @@ class HomeController extends GetxController {
     BottomNavigationItem(
       const Icon(Icons.warehouse_outlined),
       const Icon(Icons.warehouse),
-      'Sản phẩm',
+      'Kho hàng',
       isSelected: true,
     ),
     BottomNavigationItem(

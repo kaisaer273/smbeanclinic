@@ -1,11 +1,8 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart' hide Badge;
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:smbeanclinic/app/core/theme/app_color.dart';
-import 'package:smbeanclinic/app/core/theme/theme_services.dart';
 
 import '../../../global_widget/empty_widget.dart';
-import '../../../global_widget/product_list_view.dart';
 
 import '../../product/controllers/product_controller.dart';
 import '../controllers/storage_controller.dart';
@@ -78,9 +75,8 @@ class StorageView extends GetView<StorageController> {
                   condition: controller.filteredProducts.isNotEmpty,
                   child: GetBuilder(
                     builder: (ProductController controller) {
-                      return ProductListView(
-                        cartController: cartController,
-                        products: controller.filteredProducts,
+                      return const Center(
+                        child: Text("data"),
                       );
                     },
                   ),

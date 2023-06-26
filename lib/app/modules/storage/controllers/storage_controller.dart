@@ -1,23 +1,28 @@
 import 'package:get/get.dart';
 
-class StorageController extends GetxController {
-  //TODO: Implement StorageController
+import '../../../core/app_data.dart';
+import '../../../data/models/product.dart';
+import '../../../data/models/product_category.dart';
 
-  final count = 0.obs;
+class StorageController extends GetxController {
+  RxList<ProductCategory> categories = AppData.categories.obs;
+  RxList<Product> filteredProducts = <Product>[].obs;
+  final RxList<Product> _data = <Product>[].obs;
+
   @override
   void onInit() {
+    fetchData();
+    getData();
     super.onInit();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  void fetchData() {
+    _data.value = AppData.productItems;
   }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
+  get data => _data;
 
-  void increment() => count.value++;
+  void getData() {
+    filteredProducts.value = data;
+  }
 }
